@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XML Structure Checker</title>
+  <link href="/dist/output.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 text-gray-900 p-6 font-sans">
+
+  <h1 class="text-2xl font-bold mb-4">XML Structure Checker</h1>
+
+  <textarea id="input-area"
+            class="w-full h-48 p-3 border border-gray-300 rounded mb-4 font-mono"
+            placeholder="Paste XML or HTML here..."></textarea>
+
+  <button id="parse-button"
+          class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded">
+    Parse
+  </button>
+
+  <div class="mt-4">
+    <h2 id="syntax-feedback" class="mb-2"></h2>
+    <h2 id="structure-feedback" class="mb-4"></h2>
+    <div id="output" class="bg-white p-4 border border-gray-300 rounded"></div>
+  </div>
+
+  <script src="/dist/main.js"></script>
+</body>
+</html>
