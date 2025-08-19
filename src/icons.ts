@@ -1,0 +1,5 @@
+export const icons = {
+  chevron: `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>`,
+  error: `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.401 1.592a1.25 1.25 0 011.198 0l7.25 4a1.25 1.25 0 01.651 1.097v6.622a1.25 1.25 0 01-.651 1.097l-7.25 4a1.25 1.25 0 01-1.198 0l-7.25-4A1.25 1.25 0 011.5 13.311V6.689a1.25 1.25 0 01.651-1.097l7.25-4zM10 5.5a.75.75 0 00-.75.75v4.5a.75.75 0 001.5 0V6.25A.75.75 0 0010 5.5zm0 8a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"/></svg>`,
+  ok: `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/></svg>`
+};

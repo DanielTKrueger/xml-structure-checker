@@ -1,33 +1,75 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+import path from 'path';
+import nodeExternals from 'webpack-node-externals';
+import CopyPlugin from "copy-webpack-plugin";
 
-module.exports = {
-  entry: "./src/index.ts",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
-    clean: true,
-  },
-  resolve: {
-    extensions: [".ts", ".js"],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"],
-      },
+const __dirname = path.resolve();
+
+export default [
+  // Client bundle
+  {
+    name: 'client',
+    entry: './src/app.ts',
+    mode: 'development',
+    output: {
+      path: path.resolve(__dirname, 'dist/public'),
+      filename: 'bundle.js',
+      clean: true
+    },
+    module: {
+      rules: [
+        {
+          test: /\.ts$/,
+          use: 'ts-loader',
+          exclude: /node_modules/
+        },
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader', 'postcss-loader']
+        },
+        {
+          test: /\.svg$/i,
+          type: 'asset/source'
+        }
+      ]
+    },
+    resolve: {
+      extensions: ['.ts', '.js']
+    },
+    plugins: [
+      new CopyPlugin({
+        patterns: [
+          { from: "src/index.html", to: "" }
+        ]
+      })
     ],
+    devtool: 'source-map'
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-    }),
-  ],
-  mode: "development",
-};
+
+  // Server bundle
+  {
+    name: 'server',
+    target: 'node',
+    entry: './server/server.ts',
+    mode: 'development',
+    externals: [nodeExternals()],
+    output: {
+      path: path.resolve(__dirname, "dist-server"),
+      filename: "server.cjs",
+      libraryTarget: "commonjs2",
+      clean: true
+    },
+    module: {
+      rules: [
+        {
+          test: /\.ts$/,
+          use: 'ts-loader',
+          exclude: /node_modules/
+        }
+      ]
+    },
+    resolve: {
+      extensions: ['.ts', '.js']
+    },
+    devtool: 'source-map'
+  }
+];

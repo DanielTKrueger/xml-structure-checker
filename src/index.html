@@ -1,30 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>XML Structure Checker</title>
-  <link href="/dist/output.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HTML Structure & Syntax Validator</title>
 </head>
-<body class="bg-gray-100 text-gray-900 p-6 font-sans">
+<body class="min-h-screen bg-gray-50 text-gray-900">
+  <div class="max-w-7xl mx-auto p-6">
+    <h1 class="text-2xl font-semibold mb-4" id="title"></h1>
 
-  <h1 class="text-2xl font-bold mb-4">XML Structure Checker</h1>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Controls -->
+      <section class="bg-white rounded-lg shadow p-4 space-y-4">
+        <h2 class="text-lg font-medium" id="inputPanelTitle"></h2>
 
-  <textarea id="input-area"
-            class="w-full h-48 p-3 border border-gray-300 rounded mb-4 font-mono"
-            placeholder="Paste XML or HTML here..."></textarea>
+        <div class="space-y-2">
+          <label for="urlInput" class="text-sm font-medium" id="urlLabel"></label>
+          <div class="flex gap-2">
+            <input id="urlInput" type="url" class="flex-1 border rounded px-3 py-2" placeholder="https://example.com" />
+            <button id="fetchBtn" class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"></button>
+          </div>
+        </div>
 
-  <button id="parse-button"
-          class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded">
-    Parse
-  </button>
+        <div class="space-y-2">
+          <label for="sourceInput" class="text-sm font-medium" id="sourceLabel"></label>
+          <textarea id="sourceInput" rows="14" class="w-full border rounded px-3 py-2 font-mono text-sm"></textarea>
+        </div>
 
-  <div class="mt-4">
-    <h2 id="syntax-feedback" class="mb-2"></h2>
-    <h2 id="structure-feedback" class="mb-4"></h2>
-    <div id="output" class="bg-white p-4 border border-gray-300 rounded"></div>
+        <div class="flex items-center justify-between">
+          <div class="text-sm text-gray-500" id="helperText"></div>
+          <button id="validateBtn" class="px-4 py-2 rounded bg-emerald-600 text-white hover:bg-emerald-700"></button>
+        </div>
+      </section>
+
+      <!-- Results -->
+      <section class="bg-white rounded-lg shadow p-4 space-y-4">
+        <h2 class="text-lg font-medium" id="resultsTitle"></h2>
+
+        <div id="statusArea" class="space-y-2"></div>
+
+        <div>
+          <h3 class="font-medium mb-2" id="treeTitle"></h3>
+          <div id="treeContainer" class="border rounded p-3 max-h-[70vh] overflow-auto"></div>
+        </div>
+      </section>
+    </div>
   </div>
 
-  <script src="/dist/main.js"></script>
+  <script src="./bundle.js"></script>
 </body>
 </html>
