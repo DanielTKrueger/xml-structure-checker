@@ -4,11 +4,11 @@
   "description": "Client side tool for checking syntax and structure of XML/HTML documents",
   "author": "Daniel Krueger",
   "scripts": {
-    "dev:server": "webpack --config webpack.config.js --watch --env target=server & nodemon dist-server/server.cjs",
-    "dev:client": "webpack serve --config webpack.config.js --mode development",
+    "dev:server": "webpack --config webpack.config.cjs --watch --env target=server & nodemon dist-server/server.cjs",
+    "dev:client": "webpack serve --config webpack.config.cjs --mode development",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "build:server": "tsc -p tsconfig.server.json",
-    "build:client": "webpack --config webpack.config.js --mode production",
+    "build:client": "webpack --config webpack.config.cjs --mode production",
     "build": "npm run build:server && npm run build:client",
     "start": "node dist-server/server.cjs"
   },
