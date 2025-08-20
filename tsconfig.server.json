@@ -6,7 +6,8 @@
     "rootDir": "server",
     "esModuleInterop": true,
     "strict": true,
-		"outDir": "dist-server"
+		"outDir": "dist-server",
+    "types": ["node", "jest"]
   },
   "include": ["server/**/*.ts"]
 }

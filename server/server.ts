@@ -68,6 +68,12 @@ app.get("*", (_req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+// ✅ Export app for tests
+export { app };
+
+// ✅ Only start server if run directly (not during tests)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+  });
+}

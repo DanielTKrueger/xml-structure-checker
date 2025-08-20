@@ -14,4 +14,4 @@ Modern, browser-based validator for HTML (HTML5) using TypeScript, Tailwind CSS,
 ```bash
 npm install
 npm run dev
-# open http://localhost:3000
+# open http://localhost:8080
