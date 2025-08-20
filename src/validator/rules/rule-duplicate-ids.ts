@@ -7,28 +7,34 @@ export const ruleDuplicateIds: Rule = {
   id: "DUPLICATE_IDS",
   severity: "error",
   applies: () => true,
-  check: (_n, _path, ctx) => {
-    const idMap = new Map<string, number[]>();
-    const findings: Finding[] = [];
+  check: (node, _path, ctx) => {
+    // only process at root, otherwise we'd spam
+    if (node !== ctx.root) return [];
 
-    walk(ctx.root, (node, path) => {
-      if (isElement(node)) {
-        const id = getAttr(node, "id");
+    const idMap = new Map<string, number[][]>(); // id -> list of paths
+
+    walk(ctx.root, (n, path) => {
+      if (isElement(n)) {
+        const id = getAttr(n, "id");
         if (id) {
-          const p = idMap.get(id);
-          if (p) {
-            findings.push({
-              id: "DUPLICATE_IDS",
-              severity: "error",
-              message: messages.rules.DUPLICATE_IDS(id),
-              nodePath: path
-            });
-          } else {
-            idMap.set(id, path);
-          }
+          const paths = idMap.get(id) ?? [];
+          paths.push(path);
+          idMap.set(id, paths);
         }
       }
     });
+
+    const findings: Finding[] = [];
+    for (const [id, paths] of idMap.entries()) {
+      if (paths.length > 1) {
+        findings.push({
+          id: "DUPLICATE_IDS",
+          severity: "error",
+          message: `${messages.rules.DUPLICATE_IDS(id)} (appears ${paths.length} times)`,
+          nodePath: paths[0] // attach the first occurrence; could also pick all
+        });
+      }
+    }
 
     return findings;
   }
